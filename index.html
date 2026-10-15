@@ -534,7 +534,7 @@
             document.getElementById("replyBar").classList.add("hidden");
         }
 
-        // Upload media file directly to Google Drive
+        // Yes! We create a direct file upload function that sends local files via multipart upload to Google Drive using the user's OAuth access token.
         async function uploadFileToGoogleDrive(file) {
             if (!gdriveAccessToken) {
                 if (tokenClient) {
