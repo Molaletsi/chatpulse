@@ -526,12 +526,18 @@
                 banner.classList.remove("hidden");
             }
 
+            // Cloudinary treats both video and audio resources under the 'video' endpoint
+            let resourceType = 'image';
+            if (file.type.startsWith('video') || file.type.startsWith('audio')) {
+                resourceType = 'video';
+            }
+
             const formData = new FormData();
             formData.append("file", file);
             formData.append("upload_preset", UPLOAD_PRESET);
 
             try {
-                const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
+                const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${resourceType}/upload`, {
                     method: "POST",
                     body: formData
                 });
@@ -644,8 +650,12 @@
                             `;
                         } else if (isAudio) {
                             mediaHtml = `
-                                <div class="mt-2 w-full max-w-sm rounded-xl p-3 bg-slate-900 border border-slate-700">
-                                    <audio controls class="w-full h-8" src="${msg.media.url}">
+                                <div class="mt-2 w-full max-w-sm rounded-xl p-3 bg-slate-900 border border-slate-700 flex flex-col gap-2">
+                                    <div class="flex items-center space-x-2 text-xs text-slate-300 truncate">
+                                        <span>🎵</span>
+                                        <span class="truncate font-medium">${escapeHtml(msg.media.name || 'Audio Recording')}</span>
+                                    </div>
+                                    <audio controls preload="metadata" class="w-full h-10" src="${msg.media.url}">
                                         Your browser does not support audio playback.
                                     </audio>
                                 </div>
