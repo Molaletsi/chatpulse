@@ -682,7 +682,7 @@
                             <button onclick="setReplyTo('${docSnap.id}', '${escapeHtml(msg.user || 'Anon')}', '${escapeHtml(msg.text || '[Media Upload]')}')" class="opacity-0 group-hover:opacity-100 text-[10px] text-blue-400 hover:underline transition">Reply</button>
                             ${deleteHtml}
                         </div>
-                        <div class="max-w-[85%] md:max-w-[70%] rounded-2xl px-4 py-3 text-sm shadow-md ${isMe ? 'bg-blue-600 text-white rounded-tr-none' : 'bg-slate-800 text-slate-200 border border-slate-700/80 rounded-tl-none'}">
+                        <div class="w-[92%] sm:w-auto max-w-[92%] md:max-w-[70%] rounded-2xl px-4 py-3 text-sm shadow-md ${isMe ? 'bg-blue-600 text-white rounded-tr-none' : 'bg-slate-800 text-slate-200 border border-slate-700/80 rounded-tl-none'}">
                             ${replyHtml}
                             ${msg.text ? `<p class="whitespace-pre-wrap leading-relaxed">${escapeHtml(msg.text)}</p>` : ''}
                             ${mediaHtml}
